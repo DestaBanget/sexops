@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}Products - ShopPet{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <div class="row">
+        <div class="col-md-3">
+            <!-- Filter Sidebar -->
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Categories</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item {% if not current_category %}active{% endif %}">
+                            <a href="{% url 'product_list' %}" class="text-decoration-none {% if not current_category %}text-white{% endif %}">All Products</a>
+                        </li>
+                        {% for category in categories %}
+                            <li class="list-group-item {% if current_category == category.slug %}active{% endif %}">
+                                <a href="{% url 'product_list' %}?category={{ category.slug }}" class="text-decoration-none {% if current_category == category.slug %}text-white{% endif %}">
+                                    {{ category.name }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-9">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="mb-0">
+                    {% if current_category %}
+                        {% for category in categories %}
+                            {% if current_category == category.slug %}
+                                {{ category.name }}
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        All Products
+                    {% endif %}
+                </h2>
+                <span class="text-muted">{{ products|length }} products</span>
+            </div>
+            
+            {% if products %}
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                    {% for product in products %}
+                        <div class="col">
+                            <div class="card h-100 product-card">
+                                {% if product.image %}
+                                <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                                {% else %}
+                                <img src="/static/images/product-placeholder.jpg" class="card-img-top" alt="{{ product.name }}">
+                                {% endif %}
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ product.name }}</h5>
+                                    <p class="card-text text-truncate">{{ product.description }}</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="price">${{ product.price }}</span>
+                                        <a href="{% url 'product_detail' product.slug %}" class="btn btn-sm btn-outline-primary">View</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="alert alert-info">
+                    <h4 class="alert-heading">No Products Found!</h4>
+                    <p>We couldn't find any products in this category. Please try another category or check back later.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

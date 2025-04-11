@@ -1,0 +1,53 @@
+# Core Django
+Django==4.2.7
+Pillow==10.1.0
+
+# Forms and UI
+django-crispy-forms==2.0
+crispy-bootstrap5==0.7
+
+# Security
+argon2-cffi==23.1.0
+django-axes==6.1.1
+django-csp==3.7
+django-otp==1.2.2
+qrcode==7.4.2
+bleach==5.0.1
+django-recaptcha==3.0.0
+django-secure==1.0.2
+django-cors-headers==4.3.0
+
+# Database
+psycopg2-binary==2.9.9  # For PostgreSQL (optional)
+PyMySQL==1.1.0
+dj-database-url==2.1.0  # For database URL configuration
+
+# Environment and configuration
+python-dotenv==1.0.0
+django-environ==0.11.2
+
+# Deployment
+gunicorn==21.2.0
+whitenoise==6.6.0       # For static files in production
+
+# Development tools
+django-debug-toolbar==4.2.0
+
+# Testing
+coverage==7.3.2
+
+# Utilities
+pytz==2023.3.post1
+six==1.16.0
+Markdown==3.5.1
+django-filter==23.3
+django-storages==1.14.2  # For cloud storage (optional)
+
+# Image processing
+django-imagekit==4.1.0   # For image resizing and thumbnails
+
+# Internationalization
+Babel==2.13.1
+
+# Migrations
+django-migration-linter==5.0.0

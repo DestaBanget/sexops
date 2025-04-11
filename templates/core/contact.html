@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact Us - ShopPet{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <h1 class="mb-4">Contact Us</h1>
+            
+            <div class="row mb-5">
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <div class="card h-100 text-center">
+                        <div class="card-body">
+                            <i class="fas fa-map-marker-alt fa-3x mb-3 text-primary"></i>
+                            <h5 class="card-title">Address</h5>
+                            <p class="card-text">
+                                123 Pet Street<br>
+                                Animal City, AC 12345<br>
+                                United States
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <div class="card h-100 text-center">
+                        <div class="card-body">
+                            <i class="fas fa-phone fa-3x mb-3 text-primary"></i>
+                            <h5 class="card-title">Phone</h5>
+                            <p class="card-text">
+                                Customer Service:<br>
+                                +1 (123) 456-7890<br><br>
+                                Support:<br>
+                                +1 (123) 456-7891
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card h-100 text-center">
+                        <div class="card-body">
+                            <i class="fas fa-envelope fa-3x mb-3 text-primary"></i>
+                            <h5 class="card-title">Email</h5>
+                            <p class="card-text">
+                                General Inquiries:<br>
+                                info@shoppet.com<br><br>
+                                Customer Support:<br>
+                                support@shoppet.com
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Send Us a Message</h5>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Your Name</label>
+                            <input type="text" class="form-control" id="name" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="subject" class="form-label">Subject</label>
+                            <input type="text" class="form-control" id="subject" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

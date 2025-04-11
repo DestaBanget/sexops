@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Checkout - ShopPet{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="mb-4">Checkout</h1>
+    
+    <form action="{% url 'checkout' %}" method="POST">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-8">
+                <!-- Shipping Information -->
+                <div class="card mb-4">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">Shipping Information</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                {{ form.full_name|as_crispy_field }}
+                            </div>
+                            
+                            <div class="col-12">
+                                {{ form.email|as_crispy_field }}
+                            </div>
+                            
+                            <div class="col-12">
+                                {{ form.address|as_crispy_field }}
+                            </div>
+                            
+                            <div class="col-md-5">
+                                {{ form.city|as_crispy_field }}
+                            </div>
+                            
+                            <div class="col-md-4">
+                                {{ form.state|as_crispy_field }}
+                            </div>
+                            
+                            <div class="col-md-3">
+                                {{ form.zip_code|as_crispy_field }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Payment Method -->
+                <div class="card mb-4">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">Payment Method</h5>
+                    </div>
+                    <div class="card-body">
+                        {{ form.payment_method|as_crispy_field }}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <!-- Order Summary -->
+                <div class="card checkout-summary">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">Order Summary</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            {% for item in cart %}
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>
+                                        {{ item.product.name }} 
+                                        <small class="text-muted">x{{ item.quantity }}</small>
+                                    </span>
+                                    <span>${{ item.total_price }}</span>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        
+                        <hr>
+                        
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Subtotal</span>
+                            <span>${{ cart.get_total_price }}</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Tax (10%)</span>
+                            <span>${{ cart.get_total_price|floatformat:2|multiply:0.1|floatformat:2 }}</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Shipping</span>
+                            <span>$10.00</span>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between mb-4">
+                            <strong>Total</strong>
+                            <strong>${{ cart.get_total_price|add:10|add:cart.get_total_price|multiply:0.1|floatformat:2 }}</strong>
+                        </div>
+                        
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-lg btn-primary">
+                                <i class="fas fa-lock me-2"></i>Place Order
+                            </button>
+                        </div>
+                        
+                        <div class="text-center mt-3">
+                            <a href="{% url 'cart_detail' %}" class="text-decoration-none">
+                                <i class="fas fa-arrow-left me-1"></i>Return to Cart
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

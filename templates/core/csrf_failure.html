@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Security Error - ShopPet{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0">Security Error</h4>
+                </div>
+                <div class="card-body p-4 text-center">
+                    <i class="fas fa-exclamation-triangle fa-4x text-danger mb-4"></i>
+                    
+                    <h5 class="mb-3">CSRF Verification Failed</h5>
+                    
+                    <p>Your request could not be processed due to a security issue. This could be due to:</p>
+                    
+                    <ul class="text-start">
+                        <li>Your session may have expired</li>
+                        <li>You may have multiple browser tabs open</li>
+                        <li>Your browser cookies might be disabled</li>
+                    </ul>
+                    
+                    <p>Please try refreshing the page or starting a new session.</p>
+                    
+                    <div class="mt-4">
+                        <a href="{% url 'home' %}" class="btn btn-primary">Return to Home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
